@@ -1,0 +1,28 @@
+﻿@model  CalcModel
+
+<form method="post" asp-action="Calculate" asp-controller="Calc">
+	<label for="nr1">Nr1</label>
+	<input asp-for="nr1" type="number"/>
+
+	<label for="nr1">Nr2</label>
+	<input asp-for="nr2" type="number" />
+
+	@*   DropDown  *@
+	@*<select asp-for="op" class="form-select">
+		<option value="+"> + </option>
+		<option value="-"> - </option>
+	</select>*@
+
+	@*   Button  *@
+@*	<button type="submit" name="op" value="+"> + </button>
+	<button type="submit" name="op" value="-"> - </button>*@
+
+	@*   inpout  *@
+	<label for="op">Op </label>
+	<input asp-for="op" type="text" />
+
+	<button type="submit"> = </button>
+	<label>@Model.res</label>
+
+
+</form>

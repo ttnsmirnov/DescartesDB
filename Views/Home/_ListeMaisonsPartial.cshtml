@@ -1,0 +1,29 @@
+﻿@model List<ListMaisonFromFunction>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Référence</th>
+            <th>Nom_Client</th>
+            <th>email</th>
+            <th>TypeMaison</th>
+            <th>Prix</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var maison in Model)
+        {
+            <tr>
+                <td>@maison.RefClients</td>
+                <td>@maison.Nom_Client</td>
+                <td>@maison.email</td>
+                <td>@maison.TypeMaison</td>
+                <td>@maison.Prix</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+

@@ -1,0 +1,78 @@
+﻿@model MaisonVM
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <form method="post" asp-controller="Home" asp-action="ListMaisonParId">
+        
+        <select id="TypesMaisons" name="selectedType" >
+        <option value="">Select Type Maison</option>
+            @foreach (var type in ViewBag.TypesMaisons)
+        {
+                <option value="@type">@type</option>
+        }
+        </select>
+
+        <div class="mb-3">
+            <label for="searchInput" class="form-label">Type:</label>
+            <input type="text" id="searchInput" name="searchType" class="form-control">
+        </div>
+        
+        <button type="submit">Search</button>
+    </form>
+
+</div>
+
+@if (Model.listMaison != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Référence</th>
+                <th>Nom_Client</th>
+                <th>email</th>
+                <th>TypeMaison</th>
+                <th>Prix</th>
+            </tr>
+        </thead>
+        <tbody>
+            @ViewData["Message"]
+            @foreach (var maison in Model.listMaison)
+        {
+                <tr>
+                    <td>@maison.RefClients</td>
+                    <td>@maison.Nom_Client</td>
+                    <td>@maison.email</td>
+                    <td>@maison.TypeMaison</td>
+                    <td>@maison.Prix</td>
+                </tr>
+        }        
+        </tbody>
+    </table>
+}else{
+    <div class="text-center">@ViewData["Message"]</div>
+}
+@*<script>
+    $(document).ready(function () {        
+        $("#TypesMaisons").on("change", function () {
+            var selectedValue = $("#TypesMaisons").val();
+
+            $.ajax({
+                url: "@Url.Action("ListMaisonParId", "Home")",
+                method: "POST",
+                data: { typeMaison: selectedValue }, 
+
+                success: function (response) {
+                    $("#table").empty().append(response);
+                    //console.log(response);
+                },
+
+                error: function (xhr, status, error) {
+                    console.error(status.message);
+                }
+            });
+        });
+    });
+</script>*@

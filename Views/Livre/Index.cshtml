@@ -1,0 +1,41 @@
+﻿@model List<Employer>
+<form method="get">
+    @*<button type="submit" asp-action="Ajout" asp-controller="Livre">Ajouter un Livre</button>*@
+    <a >@Html.ActionLink("Ajouter un Livre", "Ajout", "Livre")</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Numero</th>
+                <th>Email</th>
+                <th>DateEmbouche</th>
+                <th>Salaire</th>
+                <th>Nom</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var livre in ViewBag.ListLivres)
+            {
+                <tr>
+                    <td>@livre.Numero</td>
+                    <td>@livre.Email</td>
+                    <td>@livre.DateEmbouche</td>
+                    <td>@livre.Salaire</td>
+                    <td>@livre.Nom</td>
+                    <td>
+                        <form id="delete" asp-action="Delete" asp-controller="Livre">
+                            <input type="hidden" name="Numero" value="@livre.Numero" />
+                            <button type="submit" class="btn-danger">Delete</button>
+                        </form>
+                    </td>                   
+                    <td><a id="modifier" href="@Url.Action("Modifier", "Livre", new{Numero = livre.Numero})">Modifier</a></td>
+                   @* <td>
+                        <form id="modofoer" asp-action="Modifier" asp-controller="Livre">
+                            <input type="hidden" name="Numero" value="@livre.Numero" />
+                            <button type="submit">Modifier</button>
+                        </form>
+                      </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
